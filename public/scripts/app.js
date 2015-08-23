@@ -2,7 +2,7 @@
 var Food = React.createClass({
   render: function() {
     return (
-      <div className="food" data-type={this.props.type} style={{backgroundColor: this.props.color}}>
+      <div className="Food" data-type={this.props.type}     style={{backgroundColor: this.props.hue}}>
         <span className="foodName">
           {this.props.name}
         </span>
@@ -11,7 +11,7 @@ var Food = React.createClass({
   }
 });
 
-var FoodBox = React.createClass({
+var FoodCart = React.createClass({
   loadFoodsFromServer: function() {
     $.ajax({
       url: this.props.url,
@@ -52,10 +52,10 @@ var FoodBox = React.createClass({
   },
   render: function() {
     return (
-      <div className="foodBox">
-        <h1>Foods</h1>
+      <div className="FoodCart">
+        <FilterFoodsForm />
+        <AddFoodForm onFoodSubmit={this.handleFoodSubmit} />
         <FoodList data={this.state.data} />
-        <FoodForm onFoodSubmit={this.handleFoodSubmit} />
       </div>
     );
   }
@@ -66,46 +66,83 @@ var FoodList = React.createClass({
   render: function() {
     var foodNodes = this.props.data.map(function(food, index) {
       return (
-        // `key` is a React-specific concept and is not mandatory for the
-        // purpose of this tutorial. if you're curious, see more here:
-        // http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
-        <Food name={food.name} type={food.type} color={food.color} key={index}>
+        <Food name={food.name} type={food.type} hue={food.hue} key={index}>
           {food.text}
         </Food>
       );
     });
     return (
-      <div className="foodList">
+      <div className="FoodList">
         {foodNodes}
       </div>
     );
   }
 });
 
-var FoodForm = React.createClass({
+var AddFoodForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     var name = React.findDOMNode(this.refs.name).value.trim();
     var type = React.findDOMNode(this.refs.type).value.trim();
-    if (!name || !type) {
+    var hue = React.findDOMNode(this.refs.hue).value.trim();
+    if (!name || !type || !hue) {
       return;
     }
-    this.props.onFoodSubmit({name: name, type: type});
+    this.props.onFoodSubmit({name: name, type: type, hue: hue});
     React.findDOMNode(this.refs.name).value = '';
     React.findDOMNode(this.refs.type).value = '';
+    React.findDOMNode(this.refs.hue).value = '';
   },
   render: function() {
     return (
-      <form className="foodForm" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="Food name" ref="name" />
-        <input type="text" placeholder="Food type" ref="type" />
+      <form className="AddFoodForm" onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="Name" ref="name" />
+        <input type="text" placeholder="Type" ref="type" />
+        <input type="text" placeholder="Hue" ref="hue" />
         <input type="submit" value="Add Food" />
       </form>
     );
   }
 });
 
+var FilterFoodsForm = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var name = React.findDOMNode(this.refs.name).value.trim();
+    var type = React.findDOMNode(this.refs.type).value.trim();
+    var hue = React.findDOMNode(this.refs.hue).value.trim();
+    if (!name || !type || !hue) {
+      return;
+    }
+    this.props.onFoodSubmit({name: name, type: type, hue: hue});
+    React.findDOMNode(this.refs.name).value = '';
+    React.findDOMNode(this.refs.type).value = '';
+    React.findDOMNode(this.refs.hue).value = '';
+  },
+  render: function() {
+    return (
+      <form className="FilterFoodsForm" onSubmit={this.handleSubmit}>
+        <select name="foodTypeSelect" value="Fruits">
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Herbs">Herbs</option>
+        </select>
+        <select>
+            <option value="Arkansas">Arkansas</option>
+            <option value="California">California</option>
+            <option value="Texas">Texas</option>
+        </select>
+        <select>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+        </select>
+      </form>
+    );
+  }
+});
+
 React.render(
-  <FoodBox url="foods.json" pollInterval={2000} />,
+  <FoodCart url="foods.json" pollInterval={2000} />,
   document.getElementById('content')
 );

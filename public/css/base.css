@@ -4,14 +4,30 @@ body {
   font-size: 15px;
   line-height: 1.7;
   margin: 0;
-  padding: 30px;
 }
-.food{
+.FoodCart{
+
+}
+.FoodList{
+    transition: all 0.8s ease-in-out;
+}
+.FoodList:hover{
+    /*transform: scale(3.4);*/
+}
+.FoodList:hover .foodName{
+    /*opacity: 0;*/
+}
+.Food{
     position: relative;
-    width: 33%;
+    width: 25%;
     float: left;
-    padding: 24% 0 0 0;
+    padding: 18% 0 0 0;
     text-align: center;
+    transition: all 1s ease-in-out;
+}
+.Food:hover{
+    /*transform: scale(2);*/
+    /*z-index: 999;*/
 }
 .foodName{
     position: absolute;
@@ -19,4 +35,22 @@ body {
     bottom: 1rem;
     font-size: 1.4rem;
     color: #fff;
+    transition: all 0.4s ease-in-out;
+}
+.AddFoodForm{
+
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    width: 100%;
+    padding: 1rem;
+}
+.FilterFoodsForm{
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    background: rgba(255,255,255,0.95);
+    width: 100%;
+    padding: 1rem;
 }
