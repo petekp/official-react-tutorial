@@ -1,82 +1,65 @@
-[
-    {
-        "name": "Strawberries",
-        "type": "fruit",
-        "hue": "red"
-    },
-    {
-        "name": "Blueberries",
-        "type": "fruit",
-        "hue": "blue"
-    },
-    {
-        "name": "Oranges",
-        "type": "fruit",
-        "hue": "orange"
-    },
-    {
-        "name": "Peas",
-        "type": "vegetable",
-        "hue": "green"
-    },
-    {
-        "name": "Bananas",
-        "type": "fruit",
-        "hue": "gold"
-    },
-    {
-        "name": "Raspberries",
-        "type": "fruit",
-        "hue": "indianred"
-    },
-    {
-        "name": "Watermelon",
-        "type": "fruit",
-        "hue": "pink"
-    },
-    {
-        "name": "Apple",
-        "type": "fruit",
-        "hue": "red"
-    },
-    {
-        "name": "Mango",
-        "type": "fruit",
-        "hue": "orange"
-    },
-    {
-        "name": "Eggplant",
-        "type": "Vegetable",
-        "hue": "purple"
-    },
-    {
-        "name": "Pears",
-        "type": "fruit",
-        "hue": "yellowgreen"
-    },
-    {
-        "name": "Lettuce",
-        "type": "vegetable",
-        "hue": "limegreen"
-    },
-    {
-        "name": "Carrots",
-        "type": "vegetable",
-        "hue": "darkorange"
-    },
-    {
-        "name": "Broccoli",
-        "type": "vegetable",
-        "hue": "forestgreen"
-    },
-    {
-        "name": "Beets",
-        "type": "vegetable",
-        "hue": "crimson"
-    },
-    {
-        "name": "Mushrooms",
-        "type": "vegetable",
-        "hue": "darkgoldenrod"
-    }
-]
+[{
+    "name": "Strawberries",
+    "type": "fruit",
+    "hue": "red"
+}, {
+    "name": "Blueberries",
+    "type": "fruit",
+    "hue": "blue"
+}, {
+    "name": "Oranges",
+    "type": "fruit",
+    "hue": "orange"
+}, {
+    "name": "Peas",
+    "type": "vegetable",
+    "hue": "green"
+}, {
+    "name": "Raspberries",
+    "type": "fruit",
+    "hue": "indianred"
+}, {
+    "name": "Watermelon",
+    "type": "fruit",
+    "hue": "pink"
+}, {
+    "name": "Apple",
+    "type": "fruit",
+    "hue": "red"
+}, {
+    "name": "Bananas",
+    "type": "fruit",
+    "hue": "gold"
+}, {
+    "name": "Eggplant",
+    "type": "Vegetable",
+    "hue": "purple"
+}, {
+    "name": "Pears",
+    "type": "fruit",
+    "hue": "yellowgreen"
+}, {
+    "name": "Mango",
+    "type": "fruit",
+    "hue": "orange"
+}, {
+    "name": "Lettuce",
+    "type": "vegetable",
+    "hue": "limegreen"
+}, {
+    "name": "Carrots",
+    "type": "vegetable",
+    "hue": "darkorange"
+}, {
+    "name": "Broccoli",
+    "type": "vegetable",
+    "hue": "forestgreen"
+}, {
+    "name": "Beets",
+    "type": "vegetable",
+    "hue": "crimson"
+}, {
+    "name": "Mushrooms",
+    "type": "vegetable",
+    "hue": "darkgoldenrod"
+}]

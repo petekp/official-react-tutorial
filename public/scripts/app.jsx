@@ -53,7 +53,7 @@ var FoodCart = React.createClass({
   render: function() {
     return (
       <div className="FoodCart">
-        <FilterFoodsForm />
+        <FilterFoodsForm onFilterSelect={this.applyFilter}/>
         <AddFoodForm onFoodSubmit={this.handleFoodSubmit} />
         <FoodList data={this.state.data} />
       </div>
@@ -64,16 +64,29 @@ var FoodCart = React.createClass({
 
 var FoodList = React.createClass({
   render: function() {
+    var sortByKey = function(array, key){
+        return array.sort(function(a, b) {
+            var x = a[key]; var y = b[key];
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    };
+    var foodArray = [];
     var foodNodes = this.props.data.map(function(food, index) {
+        foodArray.push(food);
+
       return (
-        <Food name={food.name} type={food.type} hue={food.hue} key={index}>
+        <Food key={index} name={food.name} type={food.type} hue={food.hue}>
           {food.text}
         </Food>
       );
     });
+    var foodNodesSorted = sortByKey(foodNodes, "hue");
+    sortByKey(foodArray, "name");
+    console.log(foodArray);
+
     return (
       <div className="FoodList">
-        {foodNodes}
+        {foodNodesSorted}
       </div>
     );
   }
