@@ -9,7 +9,7 @@ body {
 
 }
 .FoodList{
-    transition: all 0.8s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .FoodList:hover{
     /*transform: scale(3.4);*/
@@ -23,7 +23,7 @@ body {
     float: left;
     padding: 17% 0 0 0;
     text-align: center;
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .Food:hover{
     /*transform: scale(2);*/
