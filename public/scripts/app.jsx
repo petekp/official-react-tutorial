@@ -65,11 +65,30 @@ var Food = React.createClass({
         return count;
     },
     handleClick: function() {
-        let element = this.getDOMNode();
+        var deltaX = 0;
+        windowWidth = $(window).width();
+        windowCenterX = windowWidth / 2;
+        element = this.getDOMNode();
         $element = $(element);
+
+        parent = $element.parent();
+        parentOffset = parent.offset();
+        offset = $element.offset();
+
+        elementCenter = offset.left + $element.width()/2;
+
         var numberOfColumns = this.countFirstRowItems();
-        var columnWidth = $element.width() / numberOfColumns;
-        console.log(numberOfColumns + ' ' + columnWidth);
+        var columnWidth = windowWidth / numberOfColumns;
+        console.log(elementCenter + ' ' + windowCenterX);
+
+        if(elementCenter >= windowCenterX) {
+            deltaX = -(elementCenter - windowCenterX);
+        } else{
+            deltaX = windowCenterX - elementCenter;
+        }
+        console.log(deltaX);
+
+        parent.css('transform', 'translate(' + deltaX + 'px,' + (0) + 'px)');
     },
     render: function() {
         return (
