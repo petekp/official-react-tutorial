@@ -8,7 +8,7 @@ var App = React.createClass({
                 this.setState({data: data});
             }.bind(this),
             error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
+              console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
     },
@@ -48,7 +48,11 @@ var App = React.createClass({
 
 
 var Food = React.createClass({
-
+    getInitialState: function() {
+          return {
+              isSelected:false
+          };
+    },
     countFirstRowItems: function(){
         var count = 0, theTop = undefined;
 
@@ -64,37 +68,43 @@ var Food = React.createClass({
         });
         return count;
     },
-    handleClick: function() {
+    handleClick: function(e) {
+
+        this.setState({isSelected:! this.state.isSelected})
         var deltaX = 0;
         var deltaY = 0;
+        var scale = 4;
 
         windowWidth = $(window).outerWidth();
         windowHeight = $(window).outerHeight();
         windowCenterX = windowWidth / 2;
         windowCenterY = windowHeight / 2;
-        console.log(windowCenterY);
 
         element = this.getDOMNode();
         $element = $(element);
-        parent = $element.parent();
+        $parent = $element.parent();
 
-        parentOffset = parent.offset();
+        parentOffset = $parent.offset();
         elOffset = $element.offset();
-        elementCenterX = elOffset.left + $element.width()/2;
-        elementCenterY = elOffset.top + $element.height()/2;
+        elementCenterX = elOffset.left + $element.outerWidth()/2;
+        elementCenterY = elOffset.top + $element.outerHeight()/2;
 
         var numberOfColumns = this.countFirstRowItems();
         var columnWidth = windowWidth / numberOfColumns;
 
-        // deltaX = parentOffset.left + (windowCenterX - elementCenterX);
-        deltaY = parentOffset.top + (windowCenterY - elementCenterY);
-        console.log(parentOffset.top);
+        deltaX = parentOffset.left + ((windowCenterX * scale) - (elementCenterX * scale));
+        deltaY = parentOffset.top + (windowCenterY - (elementCenterY * scale));
 
-        parent.css('transform', 'translate(' + deltaX + 'px,' + deltaY + 'px)');
+        if(this.state.isSelected){
+          $parent.css('transform', 'translate(' + 0 + 'px,' + 0 + 'px)' + ' scale(' + 1 + ')');
+        } else{
+          $parent.css('transform', 'translate(' + deltaX + 'px,' + deltaY + 'px)' + ' scale(' + scale + ')');
+        }
+
     },
     render: function() {
         return (
-            <div className="Food" onClick={this.handleClick} data-type={this.props.type} style={{backgroundColor: this.props.hue}}>
+            <div className="Food" onTouchStart={this.handleClick} onClick={this.handleClick} data-type={this.props.type} style={{backgroundColor: this.props.hue}}>
                 <span className="foodName">
                     {this.props.name}
                 </span>
@@ -109,7 +119,7 @@ var FoodList = React.createClass({
         return array.sort(function(a, b) {
             var x = a[key]; var y = b[key];
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        });
+          });
     },
     render: function() {
         sortedArray = this.sortByKey(this.props.data, "name");
