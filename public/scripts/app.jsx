@@ -82,9 +82,9 @@ var Food = React.createClass({
         console.log(elementCenter + ' ' + windowCenterX);
 
         if(elementCenter >= windowCenterX) {
-            deltaX = -(elementCenter - windowCenterX);
+            deltaX = parentOffset.left + -(elementCenter - windowCenterX);
         } else{
-            deltaX = windowCenterX - elementCenter;
+            deltaX = parentOffset.left + (windowCenterX - elementCenter);
         }
         console.log(deltaX);
 
